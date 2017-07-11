@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+
+           #div1{width: 100px;height: 50px;background:red;margin-top: 50px;}
+           #div2{width: 100px;height: 50px;background:red;margin-top: 50px;}
+           #div3{width: 100px;height: 50px;background:red;margin-top: 50px;}
+        </style>
+        <script>
+            window.onload=function()
+            {
+                var oDiv1=document.getElementById('div1');
+                var oDiv=document.getElementsByTagName('div');
+                var i=0;
+
+                for(i=0;i<oDiv.length;i++)
+                {
+                    oDiv[i].index=i;
+                    oDiv[i].timer=null;
+                  oDiv[i].onmouseover=function()
+                {
+                    sMove(oDiv[this.index],300);
+                }
+                oDiv[i].onmouseout=function()
+                {
+                   sMove(oDiv[this.index],100);
+                }
+                }
+                
+            }
+            
+            function sMove(obj,iTar)
+            {
+            
+              
+              
+              clearInterval(obj.timer);
+              obj.timer=setInterval(function(){
+                  var iSpeed=(iTar-obj.offsetWidth)/8;
+              iSpeed=iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
+                 if(obj.offsetWidth==iTar)
+                 {
+                     clearInterval(obj.timer);
+                 }
+                 else{
+                     obj.style.width=obj.offsetWidth+iSpeed+'px';
+                 }
+              },80)
+              
+            }
+        </script>
+    </head>
+    <body>
+       <div id="div1">
+           
+       </div>
+       <div id="div2"></div>
+       <div id="div3"></div>
+    </body>
+</html>
